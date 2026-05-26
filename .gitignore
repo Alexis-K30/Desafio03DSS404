@@ -28,3 +28,23 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+
+# PHP nativo - dependencias si usas Composer en mvc_nativo
+mvc_nativo/vendor/
+
+# Archivos de configuración con credenciales del MVC nativo
+mvc_nativo/config/database.php
+mvc_nativo/.env
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs generales
+*.log
