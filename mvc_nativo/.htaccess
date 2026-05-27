@@ -1,0 +1,20 @@
+Options -Indexes
+
+# Bloquear acceso directo a carpetas sensibles
+<FilesMatch "\.(php)$">
+    <RequireAll>
+        Require all granted
+    </RequireAll>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /DSS404/DataAudiLabs/mvc_nativo/
+
+    # No reescribir archivos o carpetas que existen
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Todo lo demás va al front controller
+    RewriteRule ^(.*)$ index.php?ruta=$1 [QSA,L]
+</IfModule>

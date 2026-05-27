@@ -1,0 +1,491 @@
+/* ============================================================
+   DataAuditLabs – Estilos principales
+   Fuentes: Syne (títulos) + DM Sans (cuerpo)
+   Paleta: Azul oscuro + Lima eléctrico como acento
+   ============================================================ */
+
+:root {
+    --dal-bg:           #0f1117;
+    --dal-surface:      #1a1d27;
+    --dal-surface-2:    #22263a;
+    --dal-border:       #2e3350;
+    --dal-accent:       #c8f135;
+    --dal-accent-dark:  #a8d020;
+    --dal-text:         #e8eaf0;
+    --dal-text-muted:   #8891b0;
+    --dal-danger:       #ff4d6d;
+    --dal-warning:      #f4a261;
+    --dal-success:      #52d9a0;
+    --dal-info:         #4fc3f7;
+
+    --badge-pendiente:  #f4a261;
+    --badge-progreso:   #4fc3f7;
+    --badge-completada: #52d9a0;
+    --badge-cancelada:  #8891b0;
+}
+
+/* ---- Reset / base ---------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--dal-bg);
+    color: var(--dal-text);
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Syne', sans-serif;
+}
+
+/* ---- Navbar ---------------------------------------------- */
+.dal-navbar {
+    background-color: var(--dal-surface);
+    border-bottom: 1px solid var(--dal-border);
+    padding: 0.75rem 0;
+}
+
+.dal-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--dal-text) !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-icon {
+    color: var(--dal-accent);
+    font-size: 1.4rem;
+}
+
+.brand-accent {
+    color: var(--dal-accent);
+}
+
+.dal-navbar .nav-link {
+    color: var(--dal-text-muted) !important;
+    font-size: 0.9rem;
+    transition: color .2s;
+    padding: 0.4rem 0.6rem;
+}
+
+.dal-navbar .nav-link:hover {
+    color: var(--dal-accent) !important;
+}
+
+.nav-user {
+    font-size: 0.85rem;
+    color: var(--dal-text-muted);
+    border: 1px solid var(--dal-border);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+}
+
+.btn-logout {
+    font-size: 0.85rem;
+    color: var(--dal-danger) !important;
+    border: 1px solid var(--dal-danger);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    transition: all .2s;
+    text-decoration: none;
+}
+
+.btn-logout:hover {
+    background-color: var(--dal-danger);
+    color: #fff !important;
+}
+
+/* ---- Main ------------------------------------------------- */
+.dal-main {
+    padding: 1.5rem 0;
+    min-height: calc(100vh - 130px);
+}
+
+/* ---- Footer ----------------------------------------------- */
+.dal-footer {
+    background-color: var(--dal-surface);
+    border-top: 1px solid var(--dal-border);
+    padding: 1rem 0;
+    font-size: 0.82rem;
+    color: var(--dal-text-muted);
+}
+
+/* ---- Botón principal -------------------------------------- */
+.dal-btn-primary {
+    background-color: var(--dal-accent);
+    color: #0f1117;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    transition: background-color .2s, transform .1s;
+}
+
+.dal-btn-primary:hover {
+    background-color: var(--dal-accent-dark);
+    color: #0f1117;
+    transform: translateY(-1px);
+}
+
+/* ---- Page header ------------------------------------------ */
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.page-subtitle {
+    color: var(--dal-text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.btn-back {
+    color: var(--dal-text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color .2s;
+}
+
+.btn-back:hover {
+    color: var(--dal-accent);
+}
+
+/* ---- Cards de tareas -------------------------------------- */
+.tarea-card {
+    background-color: var(--dal-surface);
+    border: 1px solid var(--dal-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarea-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    border-color: var(--dal-accent);
+}
+
+.tarea-vencida {
+    border-color: var(--dal-danger) !important;
+}
+
+.tarea-card-header {
+    padding: 0.75rem 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.tarea-card-body {
+    padding: 0.5rem 1rem 0.75rem;
+    flex-grow: 1;
+}
+
+.tarea-titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.tarea-desc {
+    font-size: 0.85rem;
+    color: var(--dal-text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.tarea-fecha {
+    font-size: 0.8rem;
+    color: var(--dal-text-muted);
+    margin: 0;
+}
+
+.tarea-estado-select {
+    padding-top: 0;
+}
+
+.tarea-card-actions {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--dal-border);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-action-edit {
+    background-color: transparent;
+    border: 1px solid var(--dal-info);
+    color: var(--dal-info);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    padding: 0.3rem 0.7rem;
+    transition: all .2s;
+}
+
+.btn-action-edit:hover {
+    background-color: var(--dal-info);
+    color: #0f1117;
+}
+
+.btn-action-delete {
+    background-color: transparent;
+    border: 1px solid var(--dal-danger);
+    color: var(--dal-danger);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    padding: 0.3rem 0.7rem;
+    transition: all .2s;
+}
+
+.btn-action-delete:hover {
+    background-color: var(--dal-danger);
+    color: #fff;
+}
+
+/* ---- Badges de estado ------------------------------------- */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 20px;
+}
+
+.badge-pendiente   { background-color: rgba(244,162,97,0.15); color: var(--badge-pendiente);  border: 1px solid var(--badge-pendiente); }
+.badge-en-progreso { background-color: rgba(79,195,247,0.15); color: var(--badge-progreso);   border: 1px solid var(--badge-progreso); }
+.badge-completada  { background-color: rgba(82,217,160,0.15); color: var(--badge-completada); border: 1px solid var(--badge-completada); }
+.badge-cancelada   { background-color: rgba(136,145,176,0.15);color: var(--badge-cancelada);  border: 1px solid var(--badge-cancelada); }
+.badge-vencida     { background-color: rgba(255,77,109,0.15); color: var(--dal-danger);       border: 1px solid var(--dal-danger); }
+
+/* ---- Selector de estado (AJAX) ---------------------------- */
+.estado-select {
+    background-color: var(--dal-surface-2);
+    border-color: var(--dal-border);
+    color: var(--dal-text);
+    font-size: 0.85rem;
+}
+
+.estado-select:focus {
+    border-color: var(--dal-accent);
+    box-shadow: 0 0 0 0.15rem rgba(200,241,53,0.2);
+    background-color: var(--dal-surface-2);
+    color: var(--dal-text);
+}
+
+/* ---- Estado vacío ----------------------------------------- */
+.empty-state .empty-icon {
+    font-size: 4rem;
+    color: var(--dal-text-muted);
+}
+
+/* ---- Formulario card -------------------------------------- */
+.form-card {
+    background-color: var(--dal-surface);
+    border: 1px solid var(--dal-border);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+}
+
+.form-label {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--dal-text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.form-control, .form-select {
+    background-color: var(--dal-surface-2);
+    border-color: var(--dal-border);
+    color: var(--dal-text);
+    border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--dal-surface-2);
+    border-color: var(--dal-accent);
+    color: var(--dal-text);
+    box-shadow: 0 0 0 0.15rem rgba(200,241,53,0.2);
+}
+
+.form-control::placeholder {
+    color: var(--dal-text-muted);
+    opacity: 0.7;
+}
+
+.input-group-text {
+    background-color: var(--dal-surface-2);
+    border-color: var(--dal-border);
+    color: var(--dal-text-muted);
+}
+
+.form-text {
+    font-size: 0.78rem;
+    color: var(--dal-text-muted);
+}
+
+/* ---- Alertas ---------------------------------------------- */
+.alert-danger  { background-color: rgba(255,77,109,0.1);  border-color: var(--dal-danger);  color: var(--dal-danger); }
+.alert-success { background-color: rgba(82,217,160,0.1);  border-color: var(--dal-success); color: var(--dal-success); }
+
+/* ---- Toast AJAX ------------------------------------------- */
+#ajaxToast {
+    background-color: var(--dal-surface-2);
+    border: 1px solid var(--dal-border);
+    color: var(--dal-text);
+    min-width: 220px;
+}
+
+#ajaxToast.toast-ok    { border-color: var(--dal-success); }
+#ajaxToast.toast-error { border-color: var(--dal-danger); }
+
+/* ---- Auth pages ------------------------------------------- */
+.auth-page {
+    background-color: var(--dal-bg);
+}
+
+.auth-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.auth-panel-left {
+    width: 45%;
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 60%);
+    border-right: 1px solid var(--dal-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-panel-left::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%);
+    top: -50px;
+    right: -50px;
+    border-radius: 50%;
+}
+
+.auth-panel-content {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-logo-big {
+    font-size: 3rem;
+    color: var(--dal-accent);
+    margin-bottom: 1rem;
+}
+
+.auth-headline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.auth-headline span {
+    color: var(--dal-accent);
+}
+
+.auth-tagline {
+    color: var(--dal-text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.auth-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.auth-features li {
+    color: var(--dal-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-features li i {
+    color: var(--dal-accent);
+}
+
+.auth-panel-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-form-box {
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.auth-subtitle {
+    color: var(--dal-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.88rem;
+    color: var(--dal-text-muted);
+}
+
+.auth-switch a {
+    color: var(--dal-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* ---- Spinner de carga para AJAX --------------------------- */
+.estado-select.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ---- Responsive ------------------------------------------- */
+@media (max-width: 767px) {
+    .form-card {
+        padding: 1.25rem;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
