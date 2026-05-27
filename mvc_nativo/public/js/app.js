@@ -1,6 +1,7 @@
 // ============================================================
 //  DataAuditLabs – app.js
-//  AJAX: cambio de estado de tareas sin recargar la página
+//  AJAX: cambio de estado + actualización en vivo de badges
+//  (Pendiente, Por Vencer, Vencida)
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,13 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
         bsToast.show();
     }
 
-    // ---- Actualizar badge en la card -----------------------
+    // ====================== ACTUALIZAR BADGE DE ESTADO ======================
     function actualizarBadge(id, estado) {
         const cfg   = ESTADO_CONFIG[estado];
         const badge = document.querySelector(`#badge-${id}`);
         if (!badge || !cfg) return;
 
-        // Quitar todos los colores y poner el nuevo
+        // Quitar todos los colores anteriores
         ALL_BADGES.forEach(b => badge.classList.remove(b));
         badge.classList.add(cfg.badge);
 
@@ -50,13 +51,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ---- Escuchar cambios en los selects de estado ---------
+    // ====================== ACTUALIZAR CARD COMPLETA (NUEVO) ======================
+    function actualizarCardVisual(id, estado, esVencida, esPorVencer) {
+        const card = document.getElementById(`tarea-card-${id}`);
+        if (!card) return;
+
+        // 1. Actualizar el badge principal de estado
+        actualizarBadge(id, estado);
+
+        // 2. Limpiar clases y badges de advertencia anteriores
+        card.classList.remove('tarea-vencida', 'tarea-por-vencer');
+
+        const header = card.querySelector('.tarea-card-header');
+        if (!header) return;
+
+        // Eliminar badges de vencida/por vencer anteriores
+        header.querySelectorAll('.badge-vencida, .badge-por-vencer').forEach(el => el.remove());
+
+        // 3. Agregar nuevo indicador según corresponda
+        if (esVencida) {
+            card.classList.add('tarea-vencida');
+            header.insertAdjacentHTML('beforeend', `
+                <span class="badge badge-vencida ms-1">
+                    <i class="bi bi-exclamation-circle me-1"></i>Vencida
+                </span>
+            `);
+        } 
+        else if (esPorVencer) {
+            card.classList.add('tarea-por-vencer');
+            header.insertAdjacentHTML('beforeend', `
+                <span class="badge badge-por-vencer ms-1">
+                    <i class="bi bi-alarm me-1"></i>Por vencer
+                </span>
+            `);
+        }
+    }
+
+    // ====================== ESCUCHAR CAMBIOS EN EL SELECT ======================
     document.querySelectorAll('.estado-select').forEach(select => {
         select.addEventListener('change', async function () {
             const id     = this.dataset.id;
             const estado = this.value;
 
-            // Deshabilitar mientras procesa
+            // Deshabilitar visualmente mientras procesa
             this.classList.add('loading');
 
             try {
@@ -76,11 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (data.ok) {
-                    actualizarBadge(id, estado);
+                    actualizarCardVisual(id, estado, data.esVencida, data.esPorVencer);
                     showToast(`Estado cambiado a "${data.estadoLabel}"`, true);
                 } else {
                     showToast(data.mensaje || 'Error al actualizar el estado.', false);
-                    // Revertir el select al valor anterior (recargamos la página es lo más seguro)
                     window.location.reload();
                 }
 
