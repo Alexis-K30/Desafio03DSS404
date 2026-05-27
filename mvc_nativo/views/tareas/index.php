@@ -62,7 +62,7 @@ $estadoConfig = [
     <div class="empty-state text-center py-5">
         <i class="bi bi-inbox empty-icon"></i>
         <h4 class="mt-3">Aún no tienes tareas</h4>
-        <p class="text-muted">Crea tu primera tarea para empezar a organizarte.</p>
+        <p>Crea tu primera tarea para empezar a organizarte.</p>
         <a href="index.php?ruta=tareas/crear" class="btn dal-btn-primary mt-2">
             <i class="bi bi-plus-lg me-1"></i> Crear primera tarea
         </a>
