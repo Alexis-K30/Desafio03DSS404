@@ -264,6 +264,11 @@ h1, h2, h3, h4, h5 {
 .badge-completada  { background-color: rgba(82,217,160,0.15); color: var(--badge-completada); border: 1px solid var(--badge-completada); }
 .badge-cancelada   { background-color: rgba(136,145,176,0.15);color: var(--badge-cancelada);  border: 1px solid var(--badge-cancelada); }
 .badge-vencida     { background-color: rgba(255,77,109,0.15); color: var(--dal-danger);       border: 1px solid var(--dal-danger); }
+.badge-por-vencer  { background-color: rgba(244,162,97,0.15); color: var(--dal-warning);      border: 1px solid var(--dal-warning); }
+
+.tarea-por-vencer {
+    border-color: var(--dal-warning) !important;
+}
 
 /* ---- Selector de estado (AJAX) ---------------------------- */
 .estado-select {
