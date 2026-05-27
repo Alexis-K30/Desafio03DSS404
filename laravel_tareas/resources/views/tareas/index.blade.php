@@ -4,6 +4,12 @@
 
 @section('content')
 
+<style>
+    .toast-ok    { background-color: var(--dal-surface) !important; color: var(--dal-success) !important; border: 1px solid var(--dal-success) !important; }
+    .toast-error { background-color: var(--dal-surface) !important; color: var(--dal-danger)  !important; border: 1px solid var(--dal-danger)  !important; }
+    .toast-ok .toast-body, .toast-error .toast-body { color: inherit !important; }
+</style>
+
 @php
     $estadoConfig = [
         'pendiente'   => ['badge' => 'badge-pendiente',   'icon' => 'bi-clock',             'label' => 'Pendiente'],

@@ -55,7 +55,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <div class="col-md-6">
                 <label for="fecha_limite" class="form-label">Fecha límite</label>
                 <input type="date" id="fecha_limite" name="fecha_limite"
-                       class="form-control"
+                       class="form-control date-input"
                        value="<?= htmlspecialchars($_POST['fecha_limite'] ?? '') ?>"
                        min="<?= date('Y-m-d') ?>">
             </div>

@@ -25,7 +25,6 @@ require_once __DIR__ . '/../layouts/header.php';
 <div class="form-card">
     <form method="POST" action="index.php?ruta=tareas/actualizar" novalidate>
 
-        <!-- ID oculto para identificar la tarea -->
         <input type="hidden" name="id" value="<?= (int) $tarea['id'] ?>">
 
         <div class="mb-3">
@@ -55,14 +54,13 @@ require_once __DIR__ . '/../layouts/header.php';
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <div class="form-text">Puedes cambiar a cualquier estado libremente.</div>
             </div>
             <div class="col-md-6">
                 <label for="fecha_limite" class="form-label">Fecha límite</label>
                 <input type="date" id="fecha_limite" name="fecha_limite"
-                       class="form-control"
-                       value="<?= htmlspecialchars($tarea['fecha_limite'] ?? '') ?>">
-                <div class="form-text">Deja vacío para quitar la fecha límite.</div>
+                       class="form-control date-input"
+                       value="<?= htmlspecialchars($tarea['fecha_limite'] ?? '') ?>"
+                       min="<?= date('Y-m-d') ?>">
             </div>
         </div>
 

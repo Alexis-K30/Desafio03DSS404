@@ -62,7 +62,8 @@
                 <label for="fecha_limite" class="form-label">Fecha límite</label>
                 <input type="date" id="fecha_limite" name="fecha_limite"
                        class="form-control @error('fecha_limite') is-invalid @enderror"
-                       value="{{ old('fecha_limite', $tarea->fecha_limite?->format('Y-m-d')) }}">
+                       value="{{ old('fecha_limite', $tarea->fecha_limite?->format('Y-m-d')) }}"
+                       onclick="this.showPicker()">
                 <div class="form-text">Deja vacío para quitar la fecha límite.</div>
             </div>
         </div>
@@ -79,4 +80,22 @@
     </form>
 </div>
 
+
+@push('scripts')
+<style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1) !important;
+        cursor: pointer;
+    }
+</style>
+<script>
+    document.querySelectorAll('input[type="date"]').forEach(input => {
+        // Bloquear fechas pasadas
+        const hoy = new Date().toISOString().split('T')[0];
+        input.min = hoy;
+        // Abrir calendario al hacer click/focus
+        input.addEventListener('focus', function () { this.showPicker(); });
+    });
+</script>
+@endpush
 @endsection
